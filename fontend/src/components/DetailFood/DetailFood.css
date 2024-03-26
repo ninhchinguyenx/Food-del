@@ -1,0 +1,60 @@
+.foodDisplay {
+  display: flex;
+  animation: fadeIn 2s;
+}
+.foodDisplay-left {
+  display: flex;
+  gap: 17px;
+}
+.foodDisplay-img-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.foodDisplay-img-list img {
+  height: 163px;
+}
+.foodDisplay-main-img {
+  width: 586px;
+  height: 700px;
+  object-fit: cover;
+}
+.foodDisplay-right {
+  margin: 0 70px;
+  display: flex;
+  flex-direction: column;
+}
+.foodDisplay-right h1 {
+  color: #3d3d3d;
+  font-size: 40px;
+  font-weight: 700;
+}
+.foodDisplay-right-start {
+  display: flex;
+  align-items: center;
+  margin-top: 13px;
+  color: #1c1c1c;
+  font-size: 16px;
+  gap: 5px;
+}
+.foodDisplay-right-price {
+  display: flex;
+  margin: 40px 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: tomato;
+}
+.foodDisplay-right button {
+  padding: 20px 40px;
+  width: 200px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  background-color: #ff4141;
+  border: 0;
+  outline: none;
+  margin-top: 13px;
+}
+.foodDisplay-right-category {
+  margin-top: 13px;
+}

@@ -1,16 +1,25 @@
-import { useContext } from "react";
+// import { useContext } from "react";
 import { assets } from "../../assets/assets";
 import "./FoodItem.css";
-import { StoreContext } from "../../context/StoreContext";
+import { Link } from "react-router-dom";
+// import { StoreContext } from "../../context/StoreContext";
 const FoodItem = (props) => {
   const { id, name, desc, price, img } = props;
 
-  const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
+  // const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
   return (
     <div className="food-item">
       <div className="food-item-img-container">
-        <img src={img} className="food-item-image" alt="" />
-        {!cartItems[id] ? (
+        <Link to={`/food/${id}`}>
+          {" "}
+          <img
+            src={img}
+            className="food-item-image"
+            alt=""
+            onClick={window.scrollTo(0, 0)}
+          />
+        </Link>
+        {/* {!cartItems[id] ? (
           <img
             className="add"
             onClick={() => addToCart(id)}
@@ -31,7 +40,7 @@ const FoodItem = (props) => {
               alt=""
             />
           </div>
-        )}
+        )} */}
       </div>
       <div className="food-item-info">
         <div className="food-item-name-rating">

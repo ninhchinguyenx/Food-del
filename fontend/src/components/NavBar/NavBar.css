@@ -43,10 +43,13 @@
 }
 .navbar-search-icon .dot {
   position: absolute;
-  min-width: 10px;
-  min-height: 10px;
+  min-width: 20px;
+  min-height: 20px;
   background-color: tomato;
   border-radius: 50%;
   top: -8px;
   right: -8px;
+  text-align: center;
+  color: white;
+  font-size: 14px;
 }

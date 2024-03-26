@@ -4,6 +4,7 @@ import Home from "./pages/Home/Home";
 import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
 import Cart from "./pages/Cart/Cart";
 import Footer from "./components/Footer/Footer";
+import Food from "./pages/Food/Food";
 const App = () => {
   return (
     <>
@@ -13,6 +14,9 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/place-order" element={<PlaceOrder />} />
+          <Route path="/food" element={<Food />}>
+            <Route path=":foodId" element={<Food />} />
+          </Route>
         </Routes>
       </div>
       <Footer />
