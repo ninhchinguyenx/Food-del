@@ -21,11 +21,11 @@ return new class extends Migration
             $table->integer('quantity');
             $table->string('sku');
             $table->string('slug');
-            $table->boolean('is_active');
-            $table->boolean('is_show_home');
             $table->string('description');
             $table->string('more_details');
             $table->string('img_thumbnail');
+            $table->boolean('is_active')->default(true);
+            $table->boolean('is_show_home')->default(true);
             $table->foreignIdFor(Category::class)->constrained();
             $table->timestamps();
         });

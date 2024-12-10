@@ -9,14 +9,22 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'detail', 'price_regular', 'price_sale', 'quantity', 'sku', 'slug', 'description', 'more_details', 'img_thumbnail'];
+    protected $fillable = ['name', 'detail', 'category_id', 'price_regular', 'price_sale', 'quantity', 'sku', 'slug', 'description', 'more_details', 'img_thumbnail', 'is_show_home','is_active'];
     protected $casts = [
         'is_active' => 'boolean',
         'is_show_home' => 'boolean',
     ];
 
-    public function categories()
+    public function category()
     {
-        $this->belongsTo(Category::class);
+       return $this->belongsTo(Category::class);
     }
+
+    public function product_gallery(){
+        return $this->hasMany(Gallery::class);
+    }
+    public function tags(){
+        return $this->belongsToMany(Tag::class);
+    }
+
 }

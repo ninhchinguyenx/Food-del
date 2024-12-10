@@ -3,23 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Category\UpdateRequest;
-use App\Http\Requests\Admin\CategoryRequest;
-use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-
-class CategoryController extends Controller
+class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    const PATH_ROOT = 'admin.category.';
+    const PATH_ROOT = 'admin.tag.';
     public function index()
     {
-        $categories = Category::orderBy('id', 'desc')->paginate(15);
-        return view(self::PATH_ROOT . 'index', compact('categories'));
+        $tags = Tag::orderBy('id', 'desc')->paginate(15);
+        return view(self::PATH_ROOT . 'index', compact('tags'));
     }
 
     /**
@@ -33,19 +29,16 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CategoryRequest $request)
+    public function store(Request $request)
     {
         try {
             DB::transaction(function () use ($request) {
-                $dataCategory = [
+                $dataTag = [
                     'name' => $request->name,
                 ];
-                if ($request->hasFile('img')) {
-                    $dataCategory['img'] = Storage::put('admin/categories', $request->file('img'));
-                }
-                Category::query()->create($dataCategory);
+                Tag::query()->create($dataTag);
             });
-            return redirect()->route('categories.index');
+            return redirect()->route('tags.index')->with('success', 'Tạo thành công!');
         } catch (\Throwable $th) {
             return back()->with('error', $th->getMessage());
         }
@@ -64,30 +57,26 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        $category = Category::findOrFail($id);
-        return view(self::PATH_ROOT. 'edit', compact('category'));
+        $tag = Tag::findOrFail($id);
+        return view(self::PATH_ROOT. 'edit', compact('tag'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
         try {
             DB::transaction(function () use ($request, $id) {
-                $category = Category::findOrFail($id);
+                $tag = Tag::findOrFail($id);
                 $is_active= $request->is_active == 'on' ? 1 : 0;
-                $dataCategory = [
+                $dataTag = [
                     'name' => $request->name,
                     'is_active' => $is_active,
-                ];
-                if ($request->hasFile('img')) {
-                    Storage::delete($category->img);
-                    $dataCategory['img'] = Storage::put('admin/categories', $request->file('img'));
-                }      
-                $category->update($dataCategory);
+                ];      
+                $tag->update($dataTag);
             });
-            return redirect()->route('categories.index');
+            return redirect()->route('tags.index')->with('success','Sửa thành công!');
         } catch (\Throwable $th) {
             return back()->with('error', $th->getMessage());
         }
@@ -100,10 +89,10 @@ class CategoryController extends Controller
     {
         try {
             DB::transaction(function () use ($id) {
-                $category = Category::findOrFail($id);
-                $category->update(['is_active' => 0]);
+                $tag = Tag::findOrFail($id);
+                $tag->update(['is_active' => 0]);
             });
-            return redirect()->route('categories.index');
+            return redirect()->route('tags.index')->with('success','Sưa thành công!');
         } catch (\Throwable $th) {
             return back()->with('error', $th->getMessage());
         }

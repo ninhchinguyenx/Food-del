@@ -5,11 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model
+class Gallery extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'is_active'];
+
+    protected $table = 'product_gallery';
+    protected $fillable = ['img', 'product_id'];
+
     public function products(){
-        $this->hasMany(Product::class);
+      return  $this->belongsTo(Product::class);
     }
+    
 }

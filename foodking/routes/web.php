@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductControllert;
+use App\Http\Controllers\Admin\TagController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,4 +23,6 @@ Route::prefix('admin')->group(function () {
     });
 
     Route::resource('categories', CategoryController::class);
+    Route::resource('tags', TagController::class);
+    Route::resource('products', ProductControllert::class);
 });
